@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
     case "POST":
       const { title, date } = req.body;
       let current = await readFile();
-      const body = [...current, { id: uniqid(), title, date }];
+      const body = [...current, { id: uniqid(), title, date, done: 0 }];
       await writeFile(JSON.stringify(body));
       res.status(200).json({ status: "ok", data: body });
       break;

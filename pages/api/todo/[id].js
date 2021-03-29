@@ -52,13 +52,14 @@ module.exports = async (req, res) => {
       res.status(200).json({ status: "ok", data: single });
       break;
     case "PUT":
-      const { title, date } = req.body;
+      const { title, date, done } = req.body;
       let body = await readFile();
       const objIndex = body.findIndex((obj) => obj.id === id);
       body[objIndex] = {
         id,
         title,
         date,
+        done,
       };
       await writeFile(JSON.stringify(body));
       res.status(200).json({ status: "ok", data: body });
